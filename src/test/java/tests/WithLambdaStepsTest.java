@@ -10,9 +10,9 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class WithLambdaStepsTest extends TestBase{
-    private static final String BASE_URL = "https://github.com";
-    private static final String REPOSITORY = "eroshenkoam/allure-example";
-    private static final String ISSUE_NUMBER = "#68";
+    private static String BASE_URL = "https://github.com";
+    private static String REPOSITORY = "eroshenkoam/allure-example";
+    private static String ISSUE_NUMBER = "#68";
 
     @Test
     public void withLambdaStepsSearchTest(){

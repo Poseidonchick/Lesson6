@@ -10,30 +10,32 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class AnnotatedTestSteps {
 
+
+
     @Step ("Открываем страницу")
-    public void mainPage (){
-        open("https://github.com");
+    public void mainPage (String URL){
+        open(URL);
     }
 
     @Step ("Вводим что-то в поиск")
-    public void inputSearch(){
+    public void inputSearch(String repository){
         $(".header-search-input").click();
-        $(".header-search-input").sendKeys("eroshenkoam/allure-example");
+        $(".header-search-input").sendKeys(repository);
         $(".header-search-input").submit();
     }
 
     @Step ("Кликаем на ссылку")
-    public void clickOnRepository(){
-        $(By.linkText("eroshenkoam/allure-example")).click();
+    public void clickOnRepository(String repository){
+        $(By.linkText(repository)).click();
     }
 
-    @Step ("Кликаем на ишью")
+    @Step ("Кликаем на Issue")
     public void clickOnIssue(){
         $("[data-content=Issues]").click();
     }
 
     @Step ("Проверяем ишью")
-    public void assertIssue(){
-        $(withText("#68")).should(Condition.exist);
+    public void assertIssue(String issueNumber){
+        $(withText(issueNumber)).should(Condition.exist);
     }
 }
