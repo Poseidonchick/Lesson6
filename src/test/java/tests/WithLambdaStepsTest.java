@@ -10,23 +10,31 @@ import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 public class WithLambdaStepsTest extends TestBase{
+    private static final String BASE_URL = "https://github.com";
+    private static final String REPOSITORY = "eroshenkoam/allure-example";
+    private static final String ISSUE_NUMBER = "#68";
+
     @Test
     public void withLambdaStepsSearchTest(){
         step("Открываем стартовую страницу", (s) ->{
-            open("https://github.com");
+            s.parameter("URL", BASE_URL);
+            open(BASE_URL);
         });
         step("В поиск вбиваем \"eroshenkoam/allure-example\"", (s) ->{
             $(".header-search-input").click();
-        $(".header-search-input").setValue("eroshenkoam/allure-example").pressEnter();
+            s.parameter("REPOSITORY", REPOSITORY);
+        $(".header-search-input").setValue(REPOSITORY).pressEnter();
         });
-        step("Кликаем на ссылку с текстом \"eroshenkoam/allure-example\"", (s) ->{
-        $(By.linkText("eroshenkoam/allure-example")).click();
+        step("Кликаем на ссылку с текстом" + REPOSITORY, (s) ->{
+            s.parameter("REPOSITORY", REPOSITORY);
+        $(By.linkText(REPOSITORY)).click();
         });
         step("Переходим на вкладку Issues", (s) ->{
         $("[data-content=Issues]").click();
         });
-        step("Проверяем наличие ишью == #68", (s) ->{
-        $(withText("#68")).should(Condition.exist);
+        step("Проверяем наличие ISSUE == " + ISSUE_NUMBER, (s) ->{
+            s.parameter("ISSUE", ISSUE_NUMBER);
+        $(withText(ISSUE_NUMBER)).should(Condition.exist);
         });
     }
 }
