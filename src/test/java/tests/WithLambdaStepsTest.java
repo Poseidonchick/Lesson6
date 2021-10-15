@@ -16,7 +16,7 @@ public class WithLambdaStepsTest extends TestBase{
 
     @Test
     public void withLambdaStepsSearchTest(){
-        step("Открываем стартовую страницу", (s) ->{
+        step("Открываем стартовую страницу гитхаб", (s) ->{
             s.parameter("URL", BASE_URL);
             open(BASE_URL);
         });
